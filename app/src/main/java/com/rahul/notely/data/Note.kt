@@ -28,11 +28,11 @@ class Note {
     @ColumnInfo(name = "favourite")
     var favourite: Boolean = false
 
-    private fun msToDate(ms: Long): String {
+    fun msToDate(): String {
         val formatter = SimpleDateFormat("dd/MM/yyyy hh:mm:ss", Locale.getDefault())
 
         val calendar = Calendar.getInstance()
-        calendar.timeInMillis = ms
+        calendar.timeInMillis = date
         return formatter.format(calendar.time)
     }
 }

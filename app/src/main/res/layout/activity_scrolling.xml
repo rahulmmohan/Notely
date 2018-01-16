@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.rahul.notely.notedetail.NoteDetailActivity">
+    tools:context="com.rahul.notely.notedetail.ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -20,57 +19,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:titleEnabled="true"
-            app:expandedTitleGravity="top"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="?attr/colorPrimary"
+            app:titleEnabled="false"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical"
+                android:paddingTop="@dimen/text_margin"
                 android:paddingLeft="@dimen/text_margin">
 
                 <TextView
                     android:id="@+id/noteTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="16dp"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/abril_fatface"
                     android:hint="Title"
                     android:inputType="textMultiLine"
                     android:text="And then there where none"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp"
+                    android:textSize="27sp"
                     android:typeface="serif" />
 
                 <TextView
                     android:id="@+id/noteDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="16dp"
                     android:fontFamily="@font/roboto"
                     android:lines="1"
                     android:text="Today at 6.30 pm"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:typeface="normal" />
             </LinearLayout>
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
-
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_note_detail" />
+    <include layout="@layout/content_scrolling" />
 
 </android.support.design.widget.CoordinatorLayout>

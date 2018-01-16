@@ -14,11 +14,14 @@ abstract class AppDatabase: RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
 
+
+
     companion object {
+        val DATABASE = "Notely"
         var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
-                INSTANCE = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
+                INSTANCE = Room.databaseBuilder(context, AppDatabase::class.java,DATABASE)
                         .allowMainThreadQueries()
                         .build()
             }

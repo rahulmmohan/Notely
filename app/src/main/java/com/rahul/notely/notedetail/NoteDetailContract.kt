@@ -16,11 +16,9 @@ class NoteDetailContract {
 
     interface Presenter {
 
-         fun editTask()
+         fun editNote()
 
-         fun deleteTask()
-
-         fun fetchTask()
+         fun fetchNote()
 
     }
 }

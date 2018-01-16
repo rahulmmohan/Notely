@@ -4,8 +4,6 @@
     <string name="title_activity_note_detail">NoteDetailActivity</string>
     <string name="note_id">NOTE_ID</string>
     <string name="large_text">
-        "Material is the metaphor.\n\n"
-
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
         "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
         "technologically advanced and open to imagination and magic.\n"
@@ -97,4 +95,7 @@
     <string name="action_save">SAVE</string>
     <string name="action_undo">UNDO</string>
     <string name="error_empty">Fields can\'t be empty!</string>
+    <string name="title_activity_notes">NotesActivity</string>
+    <string name="no_notes">You have no Notes!</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
 </resources>
