@@ -15,14 +15,14 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun noteDao(): NoteDao
 
     companion object {
-        lateinit  var INSTANCE: AppDatabase
+        var INSTANCE: AppDatabase? = null
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
-                INSTANCE = Room.inMemoryDatabaseBuilder(context.applicationContext, AppDatabase::class.java)
+                INSTANCE = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
                         .allowMainThreadQueries()
                         .build()
             }
-            return INSTANCE
+            return INSTANCE!!
         }
     }
 }

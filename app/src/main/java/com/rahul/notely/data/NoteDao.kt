@@ -11,6 +11,9 @@ import android.arch.persistence.room.*
     @Query("SELECT * FROM Notes")
     fun getAll(): List<Note>
 
+    @Query("SELECT * FROM Notes WHERE id=:arg0")
+    fun getNote(note_id: Int): Note
+
     @Insert
     fun insert(note: Note)
 

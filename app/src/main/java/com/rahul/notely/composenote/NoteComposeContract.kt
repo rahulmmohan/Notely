@@ -10,7 +10,7 @@ import com.rahul.notely.data.Note
 /**
  * This specifies the contract between the view and the presenter.
  */
-internal interface AddEditTaskContract {
+interface NoteComposeContract {
 
     interface View {
 

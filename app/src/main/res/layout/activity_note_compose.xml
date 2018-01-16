@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinator"
     tools:context="com.rahul.notely.composenote.NoteComposeActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -13,7 +14,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-           app:title=""
+            app:title=""
             app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -35,7 +36,7 @@
             >
 
             <EditText
-                android:id="@+id/add_task_title"
+                android:id="@+id/noteTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -49,7 +50,7 @@
                 android:typeface="serif" />
 
             <EditText
-                android:id="@+id/add_task_description"
+                android:id="@+id/noteDescription"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/text_margin"
