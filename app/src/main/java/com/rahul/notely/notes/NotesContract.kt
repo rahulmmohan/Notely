@@ -25,9 +25,9 @@ interface NotesContract {
 
         fun loadNotes()
 
-        fun addNewTask()
+        fun addNewNote()
 
-        fun openTaskDetails(task: Note)
+        fun openNoteDetails(task: Note)
 
         fun deleteNote(note: Note)
 

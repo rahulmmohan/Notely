@@ -14,14 +14,14 @@ import android.view.View
 import com.rahul.notely.composenote.NoteComposeActivity
 import kotlinx.android.synthetic.main.content_notes.*
 import android.support.v7.widget.DividerItemDecoration
+import com.rahul.notely.notedetail.NoteDetailActivity
 
 
 class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteItemListener{
 
 
     private lateinit var mPresenter: NotesContract.Presenter
-    private var mNotesList = ArrayList<Note>()
-    private var mAdapter: NotesAdapter? = null
+    private lateinit var mAdapter: NotesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +30,8 @@ class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteI
 
         mPresenter = NotesPresenter(this, this)
         setupRecyclerView()
-        fab.setOnClickListener {
-            mPresenter.addNewTask()
+        addNote.setOnClickListener {
+            mPresenter.addNewNote()
         }
     }
 
@@ -41,17 +41,16 @@ class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteI
     }
 
    private fun setupRecyclerView(){
-        mAdapter = NotesAdapter(this,mNotesList)
+        mAdapter = NotesAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.itemAnimator =  DefaultItemAnimator()
         recyclerView.adapter = mAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 
-    override fun showNotes(Notes: List<Note>) {
-        mNotesList.clear()
-        mNotesList.addAll(Notes)
-        mAdapter!!.notifyDataSetChanged()
+    override fun showNotes(notes: List<Note>) {
+        mAdapter.replaceData(notes)
+        recyclerView.visibility = View.VISIBLE
         noNotes.visibility = View.GONE
     }
 
@@ -60,7 +59,10 @@ class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteI
         startActivity(intent)
     }
 
-    override fun openNote(taskId: Int) {
+    override fun openNote(noteId: Int) {
+        val intent = Intent(this, NoteDetailActivity::class.java)
+        intent.putExtra(getString(R.string.note_id), noteId)
+        startActivity(intent)
     }
 
     override fun showNoNotes() {
@@ -69,9 +71,12 @@ class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteI
     }
 
     override fun onNoteClick(note: Note) {
+        mPresenter.openNoteDetails(note)
     }
 
-    override fun onNoteDelete(note: Note) {
+    override fun onNoteDelete(note: Note,position: Int) {
+        mPresenter.deleteNote(note)
+        mAdapter.removeAt(position)
     }
 
     override fun makeNoteHearted(note: Note, hearted: Boolean) {

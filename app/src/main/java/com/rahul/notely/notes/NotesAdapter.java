@@ -1,6 +1,7 @@
 package com.rahul.notely.notes;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.rahul.notely.R;
 import com.rahul.notely.data.Note;
+import com.rahul.notely.swipereveal.RevealAdapterHelper;
+import com.rahul.notely.swipereveal.SwipeRevealLayout;
 
 import java.util.List;
 
@@ -17,28 +20,63 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
     private List<Note> notesList;
     private NoteItemListener noteItemListener;
+    private final RevealAdapterHelper mSwipeBinderHelper = new RevealAdapterHelper();
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, date, detail;
+        public TextView title, detail;
+        public TextView date;
         public CheckBox makeHearted, makeFavourite;
-        public View deleteNote;
+        public View deleteNote,listItemView;
+        SwipeRevealLayout swipeReveal;
 
         public MyViewHolder(View view) {
             super(view);
+            swipeReveal  =  view.findViewById(R.id.revealDelete);
+            listItemView  =  view.findViewById(R.id.listItemView);
             deleteNote= view.findViewById(R.id.deleteNote);
             title = view.findViewById(R.id.noteTitle);
             date = view.findViewById(R.id.noteDate);
             detail = view.findViewById(R.id.noteDescription);
             makeHearted = view.findViewById(R.id.makeHearted);
             makeFavourite = view.findViewById(R.id.makeFavourite);
+
+            makeFavourite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Note note = notesList.get(getAdapterPosition());
+                    note.setFavourite(makeFavourite.isChecked());
+                    noteItemListener.makeNoteFavourite(note,makeFavourite.isChecked());
+                }
+            });
+            makeHearted.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Note note = notesList.get(getAdapterPosition());
+                    note.setHearted(makeHearted.isChecked());
+                    noteItemListener.makeNoteHearted(note,makeHearted.isChecked());
+                }
+            });
         }
     }
 
 
-    public NotesAdapter(NoteItemListener noteItemListener,List<Note> notesList) {
+    public NotesAdapter(NoteItemListener noteItemListener) {
         this.noteItemListener = noteItemListener;
-        this.notesList = notesList;
+        mSwipeBinderHelper.setOpenMode(RevealAdapterHelper.OpenMode.SINGLE);
+    }
 
+    public void replaceData(List<Note> notes) {
+        setList(notes);
+        notifyDataSetChanged();
+    }
+    public void removeAt(int position) {
+        this.notesList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
+    }
+    private void setList(List<Note> notes) {
+        this.notesList = notes;
     }
 
     @Override
@@ -50,25 +88,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Note note = notesList.get(position);
         holder.title.setText(note.getTitle());
-        holder.date.setText(note.msToDate());
+        holder.date.setText(DateUtils.getRelativeDateTimeString(holder.date.getContext(),note.getDate(),
+                DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_ABBREV_TIME)
+                .toString().replace(","," at"));
         holder.makeFavourite.setChecked(note.getFavourite());
         holder.makeHearted.setChecked(note.getHearted());
-        holder.makeFavourite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                noteItemListener.makeNoteFavourite(note,checked);
-            }
-        });
-        holder.makeHearted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                noteItemListener.makeNoteHearted(note,checked);
-            }
-        });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        mSwipeBinderHelper.bind(position, holder.swipeReveal);
+        holder.swipeReveal.setOpen(false,false);
+
+        holder.listItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 noteItemListener.onNoteClick(note);
@@ -77,7 +108,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         holder.deleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                noteItemListener.onNoteDelete(note);
+                noteItemListener.onNoteDelete(note,position);
             }
         });
 
@@ -93,7 +124,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         void onNoteClick(Note clickedTask);
 
-        void onNoteDelete(Note clickedTask);
+        void onNoteDelete(Note clickedTask,int position);
 
         void makeNoteHearted(Note note, boolean hearted);
 

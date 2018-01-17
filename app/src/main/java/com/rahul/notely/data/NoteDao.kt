@@ -8,7 +8,7 @@ import android.arch.persistence.room.*
  */
 @Dao interface NoteDao {
 
-    @Query("SELECT * FROM Notes")
+    @Query("SELECT * FROM Notes ORDER BY date desc")
     fun getAll(): List<Note>
 
     @Query("SELECT * FROM Notes WHERE id=:arg0")

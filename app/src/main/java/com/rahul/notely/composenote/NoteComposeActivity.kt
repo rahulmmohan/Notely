@@ -17,7 +17,6 @@ class NoteComposeActivity : AppCompatActivity(), NoteComposeContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_compose)
         setSupportActionBar(toolbar)
-
         val taskId = intent.getIntExtra(getString(R.string.note_id), -1)
         mPresenter = NoteComposePresenter(this, taskId, this)
 

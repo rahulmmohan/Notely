@@ -1,120 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:dragEdge="right"
-    app:mode="same_level">
+    android:layout_height="wrap_content">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/deleteNote"
-            android:layout_width="70dp"
-            android:layout_height="118dp"
-            android:background="@android:color/holo_red_dark"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete_white_24dp" />
-
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Delete"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-    </FrameLayout>
-
-    <FrameLayout
+    <com.rahul.notely.swipereveal.SwipeRevealLayout
+        android:id="@+id/revealDelete"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:paddingLeft="@dimen/margin_normal"
-            android:paddingRight="@dimen/margin_normal"
-            android:paddingTop="20dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/markers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:orientation="horizontal">
-                <CheckBox
-                    android:id="@+id/makeFavourite"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/favourite_toggle_selector"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    />
-                <CheckBox
-                    android:id="@+id/makeHearted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/hearted_toggle_selector"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                     />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:layout_toLeftOf="@+id/markers"
+                android:id="@+id/deleteNote"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_red_dark"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/noteTitle"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto"
-                    android:lines="1"
-                    android:singleLine="true"
-                    android:text="And then there where none"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
+                    android:src="@drawable/ic_delete_white_24dp" />
 
                 <TextView
-                    android:id="@+id/noteDescription"
-                    android:layout_width="match_parent"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/roboto"
-                    android:lines="1"
-                    android:singleLine="true"
-                    android:text="@string/large_text"
-                    android:textColor="@color/contentColor"
-                    android:textSize="16sp"
-                    android:typeface="normal" />
-
-
-                <TextView
-                    android:id="@+id/noteDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:lines="1"
-                    android:text="Today at 6.30 pm"
-                    android:textSize="14sp"
-                    android:typeface="normal" />
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
-        </RelativeLayout>
-    </FrameLayout>
 
-</com.chauthai.swipereveallayout.SwipeRevealLayout>
+            <RelativeLayout
+                android:id="@+id/listItemView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="@dimen/margin_normal"
+                android:paddingRight="@dimen/margin_normal"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:id="@+id/markers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/makeFavourite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:button="@drawable/favourite_toggle_selector" />
+
+                    <CheckBox
+                        android:id="@+id/makeHearted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:button="@drawable/hearted_toggle_selector" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/markers"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/noteTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="And then there where none"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:typeface="normal" />
+
+                    <TextView
+                        android:id="@+id/noteDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/roboto"
+                        android:lines="1"
+                        android:singleLine="true"
+                        android:text="@string/large_text"
+                        android:textColor="@color/contentColor"
+                        android:textSize="16sp"
+                        android:typeface="normal" />
+
+
+                    <TextView
+                        android:id="@+id/noteDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:lines="1"
+                        android:text="Today at 6.30 pm"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp"
+                        android:typeface="normal" />
+                </LinearLayout>
+            </RelativeLayout>
+    </com.rahul.notely.swipereveal.SwipeRevealLayout>
+</FrameLayout>

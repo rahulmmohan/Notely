@@ -51,7 +51,7 @@ class NoteComposePresenter( context: Context,
         db.noteDao().insert(note)
     }
     private fun updateNote(title: String, description: String) {
-        var note = Note()
+        var note = db.noteDao().getNote(noteId)
         note.title = title
         note.details = description
         note.date = System.currentTimeMillis()

@@ -9,7 +9,7 @@ import com.rahul.notely.data.Note
  * UI as required.
  */
 class NotesPresenter(context: Context,
-                     private val mTasksView: NotesContract.View) : NotesContract.Presenter {
+                     private val mNotesView: NotesContract.View) : NotesContract.Presenter {
 
     private val db = AppDatabase.getInstance(context)
 
@@ -18,38 +18,37 @@ class NotesPresenter(context: Context,
     }
 
 
-    private fun processTasks(tasks: List<Note>) {
-        if (tasks.isEmpty()) {
-            // Show a message indicating there are no tasks for that filter type.
-            mTasksView.showNoNotes()
+    private fun processTasks(notes: List<Note>) {
+        if (notes.isEmpty()) {
+            // Show a message indicating there are no notes for that filter type.
+            mNotesView.showNoNotes()
         } else {
-            // Show the list of tasks
-            mTasksView.showNotes(tasks)
+            // Show the list of notes
+            mNotesView.showNotes(notes)
         }
     }
 
 
-    override fun addNewTask() {
-        mTasksView.openComposeNote()
+    override fun addNewNote() {
+        mNotesView.openComposeNote()
     }
 
-    override fun openTaskDetails(requestedTask: Note) {
-        mTasksView.openNote(requestedTask.id)
+    override fun openNoteDetails(requestedNote: Note) {
+        mNotesView.openNote(requestedNote.id)
     }
 
     override fun deleteNote(note: Note) {
+        db.noteDao().delete(note)
     }
 
     override fun makeNoteFavourite(note: Note, favourite: Boolean) {
         note.favourite = favourite
         db.noteDao().update(note)
-        mTasksView.onNotesUpdate("Note made favourite")
     }
 
     override fun makeNoteHearted(note: Note, hearted: Boolean) {
         note.hearted = hearted
         db.noteDao().update(note)
-        mTasksView.onNotesUpdate("Note Hearted")
     }
 
 }

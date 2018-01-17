@@ -12,6 +12,8 @@ class NoteDetailContract {
         fun showNoteList()
 
         fun setNoteDetails(note: Note)
+
+         fun showEditNote(noteId: Int)
     }
 
     interface Presenter {

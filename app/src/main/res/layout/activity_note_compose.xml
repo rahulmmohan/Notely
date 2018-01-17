@@ -14,7 +14,6 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            app:title=""
             app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -57,7 +56,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
                 android:gravity="top"
-                android:hint="description"
+                android:hint="Description"
                 android:inputType="textMultiLine"
                 android:text="@string/large_text"
                 android:textColor="@color/contentColor"

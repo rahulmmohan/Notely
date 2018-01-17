@@ -20,10 +20,11 @@
         </activity>
         <activity
             android:name=".notedetail.NoteDetailActivity"
-            android:label="@string/title_activity_note_detail"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".composenote.NoteComposeActivity"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data

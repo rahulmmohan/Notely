@@ -11,6 +11,7 @@ import junit.framework.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.*
 
 /**
  * Created by rahul on 16/1/18.
@@ -29,7 +30,7 @@ class NoteDaoTest{
     @Test
     fun should_Insert_Note_Item() {
         val note = Note()
-        note.id = 1
+        note.id = Random().nextInt()
         note.title = "title"
         note.details = "details"
         note.date = System.currentTimeMillis()
@@ -37,5 +38,22 @@ class NoteDaoTest{
         noteDao?.insert(note)
         val noteTest = (noteDao?.getNote(note.id)!!)
         Assert.assertEquals(note.title,noteTest.title)
+    }
+
+    @Test
+    fun should_Update_Note_Item() {
+        val note = Note()
+        note.id = Random().nextInt()
+        note.title = "title"
+        note.details = "detailsd"
+        note.date = System.currentTimeMillis()
+
+        noteDao?.insert(note)
+        val noteCreated = (noteDao?.getNote(note.id)!!)
+        noteCreated.details ="updated title"
+        noteCreated.favourite = true
+        noteDao?.update(noteCreated)
+        val noteTest = (noteDao?.getNote(note.id)!!)
+        Assert.assertEquals(noteCreated.details,noteTest.details)
     }
 }
