@@ -10,11 +10,13 @@ import com.rahul.notely.composenote.NoteComposeActivity
 import com.rahul.notely.data.Note
 import kotlinx.android.synthetic.main.activity_note_detail.*
 import kotlinx.android.synthetic.main.content_note_detail.*
+import android.text.format.DateUtils
 
-class NoteDetailActivity : AppCompatActivity(),NoteDetailContract.View {
 
-    private lateinit var mPresenter:NoteDetailContract.Presenter
+class NoteDetailActivity : AppCompatActivity(), NoteDetailContract.View {
 
+    private lateinit var mPresenter: NoteDetailContract.Presenter
+    private var toolbarTitle = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_detail)
@@ -22,7 +24,13 @@ class NoteDetailActivity : AppCompatActivity(),NoteDetailContract.View {
 
         val taskId = intent.getIntExtra(getString(R.string.note_id), -1)
         mPresenter = NoteDetailPresenter(this, taskId, this)
-
+        app_bar.addOnOffsetChangedListener({ appBarLayout, verticalOffset ->
+            if (Math.abs(verticalOffset) - appBarLayout.totalScrollRange == 0) {
+                supportActionBar!!.title = toolbarTitle
+            } else {
+               supportActionBar!!.title = ""
+            }
+        })
     }
 
     override fun onResume() {
@@ -45,12 +53,16 @@ class NoteDetailActivity : AppCompatActivity(),NoteDetailContract.View {
         }
         return false
     }
+
     override fun showNoteList() {
     }
 
     override fun setNoteDetails(note: Note) {
+        toolbarTitle = note.title
         noteTitle.text = note.title
-        noteDate.text = note.msToDate()
+        noteDate.text = "Last Updated: "+DateUtils.getRelativeDateTimeString(this, note.date,
+                DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_ABBREV_TIME)
+                .toString().replace(",", " at")
         noteDescription.text = note.details
     }
 
