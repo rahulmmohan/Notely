@@ -42,6 +42,7 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/abril_fatface"
                 android:hint="Title"
+
                 android:inputType="textMultiLine"
                 android:text="And then there where none"
                 android:textColor="@android:color/black"

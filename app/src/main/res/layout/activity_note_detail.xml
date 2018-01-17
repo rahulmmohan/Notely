@@ -40,9 +40,7 @@
                     android:layout_marginRight="@dimen/text_margin"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/abril_fatface"
-                    android:hint="Title"
-                    android:inputType="textMultiLine"
-                    android:text="And then there where none"
+                    android:text="@string/sample_title"
                     android:textColor="@android:color/black"
                     android:textSize="27sp"
                     android:typeface="serif" />

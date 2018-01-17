@@ -98,4 +98,5 @@
     <string name="title_activity_notes">NotesActivity</string>
     <string name="no_notes">You have no Notes!</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="sample_title">And then there where none</string>
 </resources>
