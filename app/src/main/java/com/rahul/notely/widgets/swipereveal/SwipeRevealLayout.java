@@ -1,4 +1,4 @@
-package com.rahul.notely.swipereveal;
+package com.rahul.notely.widgets.swipereveal;
 
 import android.content.Context;
 import android.support.v4.view.GestureDetectorCompat;

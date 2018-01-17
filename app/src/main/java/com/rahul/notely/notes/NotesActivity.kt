@@ -7,14 +7,17 @@ import android.support.v7.app.AppCompatActivity
 import com.rahul.notely.R
 import com.rahul.notely.data.Note
 
-import kotlinx.android.synthetic.main.activity_notes.*
+import kotlinx.android.synthetic.main.notes_layout.*
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.rahul.notely.composenote.NoteComposeActivity
 import kotlinx.android.synthetic.main.content_notes.*
 import android.support.v7.widget.DividerItemDecoration
+import android.view.Menu
+import android.view.MenuItem
 import com.rahul.notely.notedetail.NoteDetailActivity
+import kotlinx.android.synthetic.main.activity_notes.*
 
 
 class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteItemListener{
@@ -46,6 +49,20 @@ class NotesActivity : AppCompatActivity(), NotesContract.View,NotesAdapter.NoteI
         recyclerView.itemAnimator =  DefaultItemAnimator()
         recyclerView.adapter = mAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_notes, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_filter -> {
+                mainLaout.toggleMenu()
+                return true
+            }
+        }
+        return false
     }
 
     override fun showNotes(notes: List<Note>) {

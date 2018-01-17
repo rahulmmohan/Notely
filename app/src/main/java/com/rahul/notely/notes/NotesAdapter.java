@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.rahul.notely.R;
 import com.rahul.notely.data.Note;
-import com.rahul.notely.swipereveal.RevealAdapterHelper;
-import com.rahul.notely.swipereveal.SwipeRevealLayout;
+import com.rahul.notely.widgets.swipereveal.RevealAdapterHelper;
+import com.rahul.notely.widgets.swipereveal.SwipeRevealLayout;
 
 import java.util.List;
 

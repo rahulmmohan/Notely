@@ -22,8 +22,8 @@ class NoteDetailActivity : AppCompatActivity(), NoteDetailContract.View {
         setContentView(R.layout.activity_note_detail)
         setSupportActionBar(toolbar)
 
-        val taskId = intent.getIntExtra(getString(R.string.note_id), -1)
-        mPresenter = NoteDetailPresenter(this, taskId, this)
+        val noteId = intent.getIntExtra(getString(R.string.note_id), -1)
+        mPresenter = NoteDetailPresenter(this, noteId, this)
         app_bar.addOnOffsetChangedListener({ appBarLayout, verticalOffset ->
             if (Math.abs(verticalOffset) - appBarLayout.totalScrollRange == 0) {
                 supportActionBar!!.title = toolbarTitle

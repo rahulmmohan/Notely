@@ -1,4 +1,4 @@
-package com.rahul.notely.swipereveal;
+package com.rahul.notely.widgets.swipereveal;
 
 import android.support.v4.util.LongSparseArray;
 

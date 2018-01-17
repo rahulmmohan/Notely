@@ -30,9 +30,9 @@ class NoteComposePresenter( context: Context,
 
     override fun saveNote(title: String, description: String) {
         if (isNewTask) {
-            createNote(title, description);
+            createNote(title, description)
         } else {
-            updateNote(title, description);
+            updateNote(title, description)
         }
         noteComposeView.showNoteList()
     }

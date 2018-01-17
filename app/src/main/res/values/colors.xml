@@ -7,4 +7,5 @@
     <color name="colorSelectedStar">#f5c918</color>
     <color name="colorSelectedHeart">#f91b3e</color>
     <color name="contentColor">#6b6969</color>
+    <color name="filterBackground">#3d3d3d</color>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.rahul.notely.swipereveal.SwipeRevealLayout
+    <com.rahul.notely.widgets.swipereveal.SwipeRevealLayout
         android:id="@+id/revealDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,7 +11,7 @@
 
             <LinearLayout
                 android:id="@+id/deleteNote"
-                android:layout_width="70dp"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:background="@android:color/holo_red_dark"
                 android:gravity="center"
@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
                 android:paddingLeft="@dimen/margin_normal"
+                android:background="?attr/selectableItemBackground"
                 android:paddingRight="@dimen/margin_normal"
                 android:paddingTop="20dp">
 
@@ -110,5 +111,5 @@
                         android:typeface="normal" />
                 </LinearLayout>
             </RelativeLayout>
-    </com.rahul.notely.swipereveal.SwipeRevealLayout>
+    </com.rahul.notely.widgets.swipereveal.SwipeRevealLayout>
 </FrameLayout>
