@@ -13,7 +13,7 @@ class NotesPresenter(context: Context,
 
     private val db = AppDatabase.getInstance(context)
 
-    override fun loadNotes() {
+    override fun loadNotes(filter: Filter) {
         processTasks(db.noteDao().getAll())
     }
 

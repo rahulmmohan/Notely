@@ -23,7 +23,7 @@ interface NotesContract {
 
     interface Presenter {
 
-        fun loadNotes()
+        fun loadNotes(filter: Filter)
 
         fun addNewNote()
 
