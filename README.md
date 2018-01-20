@@ -32,6 +32,7 @@ Shows a list with the notes' titles with last update date. At the bottom there i
 
 ### Filter
 Notes can be filter based on filter conditions.
+
 <img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/filter.png" width=200px/>
 
 ### Detail Screen
