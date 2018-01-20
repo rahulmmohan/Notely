@@ -1,0 +1,59 @@
+# Notely
+The Notely app lets a user create, read, update and delete notes. A note has a title and description. User can also delete note.
+Make it favaourite and starred.
+
+## Designing the app
+The app consists of three UI screens:
+
+* Notes - Used to manage a list of tasks.
+* Note Detail - Used to read or delete a task.
+* Note compose - Used to create or edit tasks.
+
+In this version of the app following basic **Model-View-Presenter (MVP)** architecture without using any architectural frameworks.
+Each screen is implemented using the following classes and interfaces:
+
+* A contract class which defines the connection between the view and the presenter.
+* A Activity which implements the view interface.
+* A presenter which implements the presenter interface in the corresponding contract.
+
+A presenter typically hosts business logic associated with a particular feature, and the corresponding view handles the Android UI work. The view contains almost no logic; it converts the presenter's commands to UI actions, and listens for user actions, which are then passed to the presenter.
+
+## Data Source
+**Sqlite** is used as local data source for the app.
+
+**DatabaseHandler** class help to handle All **CRUD Operations** (Create, Read, Update and Delete) related to this app.
+
+## User interface
+
+### Notes Screen
+Shows a list with the tasks' titles with last update date. At the bottom there is a button to create a new task.
+
+<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/tasklist.png" width=200px/>
+
+### Detail Screen
+Shows the title, description, created date and the updated date. The menu shows an action to delete the task. At the bottom there is a button to edit the task details.
+
+<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/taskdetails.png" width=200px/>
+
+### Add/Edit Screen
+Lets the user edit the title and description of a new or existing task.
+
+<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/addEditTask.png" width=200px/>
+
+## Open in Android Studio
+To open one of this code in Android Studio, begin by checking out to the master branch, and then open the **MyTasks/** directory in Android Studio. The following series of steps illustrate how to open this.
+ 
+Clone the repository:
+ 
+```
+git clone https://github.com/rahulmmohan/Notely.git
+```
+ 
+1. Open Android Studio and launch the Android SDK manager from it (Tools | Android | SDK Manager)
+1. Check that these two components are installed and updated to the latest version. Install or upgrade
+   them if necessary.
+   1. *Android SDK Platform Tools*
+   2. *Android Support Library*
+1. Return to Android Studio and select *Import Project*
+1. Select "Import from existing model - Gradle"
+1. Compile and run.
