@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rahulmmohan/Notely.svg?branch=master)](https://travis-ci.org/rahulmmohan/Notely)
+
 # Notely
 The Notely app lets a user create, read, update and delete notes. A note has a title and description. User can also delete note.
 Make it favaourite and starred.
