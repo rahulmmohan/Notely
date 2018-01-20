@@ -31,22 +31,22 @@ The Room persistence library provides an abstraction layer over SQLite to allow 
 ### Notes Screen
 Shows a list with the notes' titles with last update date. At the bottom there is a button to create a new task.
 
-<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/home.png" width=200px/>
+<img src="https://github.com/rahulmmohan/Notely/blob/master/Export/home.png" width=200px/>
 
 ### Filter
 Notes can be filter based on filter conditions.
 
-<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/filter.png" width=200px/>
+<img src="https://github.com/rahulmmohan/Notely/blob/master/Export/filter.png" width=200px/>
 
 ### Detail Screen
 Shows the title, description and the updated date. The menu shows an action to edit the note. 
 
-<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/noteDetails.png" width=200px/>
+<img src="https://github.com/rahulmmohan/Notely/blob/master/Export/noteDetails.png" width=200px/>
 
 ### Add/Edit Screen
 Lets the user edit the title and description of a new or existing note.
 
-<img src="https://github.com/rahulmmohan/MyTasks/blob/master/Export/noteCompose.png" width=200px/>
+<img src="https://github.com/rahulmmohan/Notely/blob/master/Export/noteCompose.png" width=200px/>
 
 ## Open in Android Studio
 To open one of this code in Android Studio, begin by checking out to the master branch, and then open the **Notely/** directory in Android Studio. The following series of steps illustrate how to open this.
