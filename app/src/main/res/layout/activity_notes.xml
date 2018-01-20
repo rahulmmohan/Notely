@@ -8,6 +8,7 @@
     app:allowDragging="false"
     app:slidePadding="200dp"
     app:contentToggle="true"
+    app:contentAlpha="1"
     app:slideMode="right">
     <include layout="@layout/filter_layout"/>
     <include layout="@layout/notes_layout"/>
