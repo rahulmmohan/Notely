@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import com.rahul.notely.R
 import com.rahul.notely.composenote.NoteComposeActivity
 import com.rahul.notely.data.Note
@@ -40,13 +41,14 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
     }
 
     private fun filterSettings() {
-        filterHearted.setOnCheckedChangeListener { compoundButton, checked ->
-            filter.applyFilter(Filter.FilterType.HEARTED, checked)
+        applyFilter.setOnClickListener {
+            filter.markFilter(Filter.FilterType.HEARTED, filterHearted.isChecked)
+            filter.markFilter(Filter.FilterType.FAVOURITE, filterFavourite.isChecked)
+            filterBubble.visibility = if (filter.appliedFilters.isEmpty()) View.GONE else View.VISIBLE
+            mPresenter.loadNotes(filter)
+            filterLayout.toggleRightSlide()
         }
-        filterFavourite.setOnCheckedChangeListener { compoundButton, checked ->
-            filter.applyFilter(Filter.FilterType.FAVOURITE, checked)
-        }
-        applyFilter.setOnClickListener { mPresenter.loadNotes(filter) }
+        filterClose.setOnClickListener { filterLayout.toggleRightSlide() }
     }
 
     override fun onResume() {
@@ -57,6 +59,7 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
     private fun setupRecyclerView() {
         mAdapter = NotesAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.layoutManager.layoutDirection
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = mAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
@@ -67,10 +70,22 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
         return super.onCreateOptionsMenu(menu)
     }
 
+    private lateinit var filterBubble: View
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val filterMenuItem = menu.findItem(R.id.action_filter)
+        val rootView = filterMenuItem.actionView as FrameLayout
+        filterBubble = rootView.findViewById(R.id.filter_bubble)
+        rootView.setOnClickListener { onOptionsItemSelected(filterMenuItem) }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_filter -> {
-                mainLaout.toggleMenu()
+                filterHearted.isChecked = filter.appliedFilters.contains(Filter.FilterType.HEARTED)
+                filterFavourite.isChecked = filter.appliedFilters.contains(Filter.FilterType.FAVOURITE)
+                filterLayout.toggleRightSlide()
                 return true
             }
         }
@@ -80,7 +95,7 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
     override fun showNotes(notes: List<Note>) {
         mAdapter.replaceData(notes)
         recyclerView.visibility = View.VISIBLE
-        noNotes.visibility = View.GONE
+        noNotes.visibility = View.INVISIBLE
     }
 
     override fun openComposeNote() {
@@ -95,7 +110,7 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
     }
 
     override fun showNoNotes() {
-        recyclerView.visibility = View.GONE
+        recyclerView.visibility = View.INVISIBLE
         noNotes.visibility = View.VISIBLE
     }
 
@@ -106,6 +121,7 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
     override fun onNoteDelete(note: Note, position: Int) {
         mPresenter.deleteNote(note)
         mAdapter.removeAt(position)
+        if (mAdapter.itemCount == 0) showNoNotes()
     }
 
     override fun makeNoteHearted(note: Note, hearted: Boolean) {

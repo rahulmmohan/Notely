@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:layout_margin="5dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_filter_list_black_24dp"/>
+
+    <View
+        android:layout_marginTop="2dp"
+        android:id="@+id/filter_bubble"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/filter_applied_bubble"
+        android:visibility="gone">
+    </View>
+
+</FrameLayout>

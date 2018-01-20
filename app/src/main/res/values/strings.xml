@@ -101,4 +101,5 @@
     <string name="sample_title">And then there where none</string>
     <string name="filter_hearted">Hearted</string>
     <string name="filter_favourite">Favourite</string>
+    <string name="filter">FILTER</string>
 </resources>

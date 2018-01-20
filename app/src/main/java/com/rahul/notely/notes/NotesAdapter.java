@@ -13,11 +13,12 @@ import com.rahul.notely.data.Note;
 import com.rahul.notely.widgets.swipereveal.RevealAdapterHelper;
 import com.rahul.notely.widgets.swipereveal.SwipeRevealLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
 
-    private List<Note> notesList;
+    private List<Note> notesList= new ArrayList<>();
     private NoteItemListener noteItemListener;
     private final RevealAdapterHelper mSwipeBinderHelper = new RevealAdapterHelper();
 

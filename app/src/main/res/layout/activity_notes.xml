@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rahul.notely.widgets.swipereveal.SlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.rahul.notely.widgets.NotelySlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/mainLaout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/filterLayout"
     android:orientation="horizontal"
-    android:layout_height="match_parent" >
-
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
-
-        <include layout="@layout/notes_layout"/>
-        <include layout="@layout/filter_layout"/>
-    </LinearLayout>
-
-</com.rahul.notely.widgets.swipereveal.SlidingLayout>
+    android:layout_height="match_parent"
+    app:allowDragging="false"
+    app:slidePadding="200dp"
+    app:contentToggle="true"
+    app:slideMode="right">
+    <include layout="@layout/filter_layout"/>
+    <include layout="@layout/notes_layout"/>
+</com.rahul.notely.widgets.NotelySlidingLayout>

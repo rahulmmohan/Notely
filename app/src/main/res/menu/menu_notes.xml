@@ -1,11 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rahul.notely.notedetail.ScrollingActivity">
+    tools:context="com.rahul.notely.notes.NotesActivity">
     <item
         android:id="@+id/action_filter"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="@string/filter"
+        app:actionLayout="@layout/filter_menu_item"
         app:showAsAction="always" />
 </menu>
