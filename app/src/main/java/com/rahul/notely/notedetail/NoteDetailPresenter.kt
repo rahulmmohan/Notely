@@ -2,7 +2,6 @@ package com.rahul.notely.notedetail
 
 import android.content.Context
 import com.rahul.notely.data.AppDatabase
-import com.rahul.notely.data.Note
 
 
 /**

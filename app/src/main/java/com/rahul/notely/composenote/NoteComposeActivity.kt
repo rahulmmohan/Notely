@@ -21,7 +21,7 @@ class NoteComposeActivity : AppCompatActivity(), NoteComposeContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_compose)
         setSupportActionBar(toolbar)
-        var noteId = intent.getIntExtra(getString(R.string.note_id), -1)
+        val noteId = intent.getIntExtra(getString(R.string.note_id), -1)
         mPresenter = NoteComposePresenter(this, noteId, this)
 
         noteTitle.addTextChangedListener(textChangeListener)

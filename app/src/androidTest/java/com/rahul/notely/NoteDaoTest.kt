@@ -1,7 +1,5 @@
 package com.rahul.notely
 
-import android.app.Instrumentation
-import android.content.pm.InstrumentationInfo
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.rahul.notely.data.AppDatabase

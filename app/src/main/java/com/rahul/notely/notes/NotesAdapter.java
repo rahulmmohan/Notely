@@ -19,16 +19,19 @@ import java.util.List;
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
 
     private List<Note> notesList= new ArrayList<>();
-    private NoteItemListener noteItemListener;
+    private final NoteItemListener noteItemListener;
     private final RevealAdapterHelper mSwipeBinderHelper = new RevealAdapterHelper();
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, detail;
-        public TextView date;
-        public CheckBox makeHearted, makeFavourite;
-        public View deleteNote,listItemView;
-        SwipeRevealLayout swipeReveal;
+        public final TextView title;
+        public final TextView detail;
+        public final TextView date;
+        public final CheckBox makeHearted;
+        public final CheckBox makeFavourite;
+        public final View deleteNote;
+        public final View listItemView;
+        final SwipeRevealLayout swipeReveal;
 
         public MyViewHolder(View view) {
             super(view);
@@ -91,6 +94,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Note note = notesList.get(position);
         holder.title.setText(note.getTitle());
+        holder.detail.setText(note.getDetails());
         holder.date.setText(DateUtils.getRelativeDateTimeString(holder.date.getContext(),note.getDate(),
                 DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_ABBREV_TIME)
                 .toString().replace(","," at"));

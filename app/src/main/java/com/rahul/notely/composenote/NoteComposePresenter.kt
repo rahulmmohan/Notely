@@ -16,8 +16,8 @@ import com.rahul.notely.data.Note
 /**
  * Creates a presenter for the add/edit view.
  *
- * @param taskId      ID of the task to edit or null for a new task
- * @param addTaskView the add/edit view
+ * @param noteId      ID of the task to edit or null for a new task
+ * @param noteComposeView the add/edit view
  */
 class NoteComposePresenter( context: Context,
                            private val noteId: Int,
@@ -39,19 +39,19 @@ class NoteComposePresenter( context: Context,
 
     override fun fetchNote() {
         if (isNewTask) return
-        var note = db.noteDao().getNote(noteId)
+        val note = db.noteDao().getNote(noteId)
         noteComposeView.setNoteDetails(note)
     }
 
     private fun createNote(title: String, description: String) {
-        var note = Note()
+        val note = Note()
         note.title = title
         note.details = description
         note.date = System.currentTimeMillis()
         db.noteDao().insert(note)
     }
     private fun updateNote(title: String, description: String) {
-        var note = db.noteDao().getNote(noteId)
+        val note = db.noteDao().getNote(noteId)
         note.title = title
         note.details = description
         note.date = System.currentTimeMillis()

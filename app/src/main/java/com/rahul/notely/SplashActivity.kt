@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.rahul.notely.notes.NotesActivity
-import kotlinx.android.synthetic.main.notes_layout.*
-import kotlinx.android.synthetic.main.activity_notes.*
 
 /**
  * Created by rahul on 15/01/18.

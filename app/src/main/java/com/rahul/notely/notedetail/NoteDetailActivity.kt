@@ -60,7 +60,7 @@ class NoteDetailActivity : AppCompatActivity(), NoteDetailContract.View {
     override fun setNoteDetails(note: Note) {
         toolbarTitle = note.title
         noteTitle.text = note.title
-        noteDate.text = "Last Updated: "+DateUtils.getRelativeDateTimeString(this, note.date,
+        noteDate.text = getString(R.string.last_update)+DateUtils.getRelativeDateTimeString(this, note.date,
                 DateUtils.DAY_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_ABBREV_TIME)
                 .toString().replace(",", " at")
         noteDescription.text = note.details

@@ -60,21 +60,6 @@ public class SwipeRevealLayout extends FrameLayout {
             }
 
             @Override
-            public boolean onContextClick(MotionEvent e) {
-                return super.onContextClick(e);
-            }
-
-            @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
-                return super.onSingleTapConfirmed(e);
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                return super.onSingleTapUp(e);
-            }
-
-            @Override
             public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                 mIsScrolling = true;
 

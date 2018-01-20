@@ -3,9 +3,6 @@
     <color name="colorPrimary">#f2f2f2</color>
     <color name="colorPrimaryDark">#bfbfbf</color>
     <color name="colorAccent">#bfbfbf</color>
-    <color name="colorUnselected">#ededed</color>
-    <color name="colorSelectedStar">#f5c918</color>
-    <color name="colorSelectedHeart">#f91b3e</color>
     <color name="contentColor">#6b6969</color>
     <color name="filterBackground">#3d3d3d</color>
     <color name="filterTextColor">#d5d5d5</color>
