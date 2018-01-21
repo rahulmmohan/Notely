@@ -5,7 +5,7 @@ The Notely app lets a user create, read, update and delete notes. A note has a t
 Make it favaourite and starred.
 
 ### Run on appetize.io
-Run app on the online emulators using [appetize.io](https://appetize.io/embed/w9kbd5d76y79e2mc2a33ef8qrm?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
+Run app on the online emulators using [appetize.io](https://appetize.io/embed/12xmraz9deb1n1pbr66q87f1c8?device=nexus5&scale=75&orientation=portrait&osVersion=7.1)
 
 ## Designing the app
 The app consists of three UI screens:
