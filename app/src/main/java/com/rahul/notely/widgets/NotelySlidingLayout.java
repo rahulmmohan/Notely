@@ -25,7 +25,12 @@ public class NotelySlidingLayout extends SlideMenuLayout {
 
     //Remove touch functionality to allow list iem to detect touch events
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        int currentX = (int) event.getX();
+        if(isRightSlideOpen()&&currentX < getSlideContentView().getRight()/2) {
+            toggleRightSlide();
+            return true;
+        }
         return false;
 
     }

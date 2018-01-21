@@ -2,6 +2,7 @@ package com.rahul.notely.composenote
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,10 +12,11 @@ import com.rahul.notely.R
 import com.rahul.notely.data.Note
 import kotlinx.android.synthetic.main.activity_note_compose.*
 
+
 class NoteComposeActivity : AppCompatActivity(), NoteComposeContract.View {
 
     private lateinit var mPresenter: NoteComposeContract.Presenter
-    private var isUndoVisible = false
+    private var isDataChanged = false
     private var isDataSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,21 +54,25 @@ class NoteComposeActivity : AppCompatActivity(), NoteComposeContract.View {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         register = menu.findItem(R.id.action_undo)
-        register!!.isVisible = isUndoVisible
+        register!!.isVisible = isDataChanged
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> exitCompose()
             R.id.action_save -> saveNote()
             R.id.action_undo -> {
                 mPresenter.fetchNote()
-                isUndoVisible = false
+                isDataChanged = false
                 invalidateOptionsMenu()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        exitCompose()
     }
 
     private fun saveNote() {
@@ -84,9 +90,22 @@ class NoteComposeActivity : AppCompatActivity(), NoteComposeContract.View {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             if (isDataSet && register != null && !register!!.isVisible) {
-                isUndoVisible = true
+                isDataChanged = true
                 invalidateOptionsMenu()
             }
+        }
+    }
+
+    private fun exitCompose() {
+        if (isDataChanged) {
+            val alertDialog = AlertDialog.Builder(this).create()
+            alertDialog.setMessage(getString(R.string.discard))
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
+                    { dialog, _ -> dialog.dismiss();finish() })
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", { dialog, _ -> dialog.dismiss() })
+            alertDialog.show()
+        } else {
+            finish()
         }
     }
 }

@@ -46,9 +46,17 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
             filter.markFilter(Filter.FilterType.FAVOURITE, filterFavourite.isChecked)
             filterBubble.visibility = if (filter.appliedFilters.isEmpty()) View.GONE else View.VISIBLE
             mPresenter.loadNotes(filter)
+            filterMenuItem.visibility = View.VISIBLE
             filterLayout.toggleRightSlide()
         }
-        filterClose.setOnClickListener { filterLayout.toggleRightSlide() }
+        filterClose.setOnClickListener { filterLayout.toggleRightSlide(); }
+        filterLayout.addOnSlideChangedListener { _, _, isRightSlideOpen ->
+            if (isRightSlideOpen) {
+                filterMenuItem.visibility = View.GONE
+            } else {
+                filterMenuItem.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onResume() {
@@ -72,11 +80,13 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
 
     private lateinit var filterBubble: View
 
+    private lateinit var filterMenuItem: FrameLayout
+
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        val filterMenuItem = menu.findItem(R.id.action_filter)
-        val rootView = filterMenuItem.actionView as FrameLayout
-        filterBubble = rootView.findViewById(R.id.filter_bubble)
-        rootView.setOnClickListener { onOptionsItemSelected(filterMenuItem) }
+        val menuItem = menu.findItem(R.id.action_filter)
+        filterMenuItem = menuItem.actionView as FrameLayout
+        filterBubble = filterMenuItem.findViewById(R.id.filter_bubble)
+        filterMenuItem.setOnClickListener { onOptionsItemSelected(menuItem) }
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -136,5 +146,13 @@ class NotesActivity : AppCompatActivity(), NotesContract.View, NotesAdapter.Note
         Snackbar.make(coordinator, message, Snackbar.LENGTH_LONG).show()
     }
 
+    override fun onBackPressed() {
+        if (filterLayout.isRightSlideOpen) {
+            filterLayout.toggleRightSlide()
+        } else {
+            super.onBackPressed()
+        }
+
+    }
 
 }
