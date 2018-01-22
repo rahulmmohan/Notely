@@ -31,7 +31,7 @@ The Room persistence library provides an abstraction layer over SQLite to allow 
 ## User interface
 
 ### Notes Screen
-Shows a list with the notes' titles with last update date. At the bottom there is a button to create a new task.
+Shows a list with the notes' titles with last update date. At the bottom there is a button to create a new note.
 
 <img src="https://github.com/rahulmmohan/Notely/blob/master/Exports/home.png" width=200px/>
 
